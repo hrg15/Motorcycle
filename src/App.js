@@ -5,8 +5,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { sendMotorData, reciveMotorData } from "./Store/MotorAction";
 import { changeMotorAdded } from "./Store/MotorReducer";
 
-let initStatus = true;
-
 function App() {
   const dispatch = useDispatch();
   const motors = useSelector((state) => state.motors.motors);
@@ -20,7 +18,6 @@ function App() {
     if (motorAdded) {
       dispatch(sendMotorData(motors[motors.length - 1]));
       dispatch(changeMotorAdded());
-      initStatus = false;
     }
   }, [dispatch, motors, motorAdded]);
   return (

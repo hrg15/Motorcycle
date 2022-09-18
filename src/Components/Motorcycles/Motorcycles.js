@@ -10,7 +10,7 @@ const Motorcycles = () => {
     <Fragment>
       <ul className="w-1/2 text-center p-8 mx-auto bg-white ">
         {isLoading && <p className="text-center text-bold">Loading...</p>}
-        {motors.length < 1 && (
+        {motors.length < 1 && !isLoading && (
           <p className="text-center text-bold">There is no Motorcycle!</p>
         )}
         {motors.map((motor) => (

@@ -40,7 +40,6 @@ export const reciveMotorData = () => {
 
 export const sendMotorData = (data) => {
   return async (dispatch) => {
-    console.log("motor data are:", data);
     const uploadMotorData = () => {
       const storage = getStorage(app);
       const db = getFirestore(app);
@@ -50,17 +49,17 @@ export const sendMotorData = (data) => {
       uploadTask.on(
         "state_chaned",
         (snapshot) => {
-          const progress =
-            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-          console.log("Upload is " + progress + "% done");
+          // const progress =
+          //  (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          // console.log("Upload is " + progress + "% done");
         },
         (error) => {
           console.log("upload error:" + error);
         },
         () => {
           getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
-            console.log("This is url:" + downloadURL);
-            const docRef = await setDoc(doc(db, "motors", data.motorid), {
+            // console.log("This is url:" + downloadURL);
+            await setDoc(doc(db, "motors", data.motorid), {
               motorname: data.motorname,
               discription: data.discription,
               motorid: data.motorid,
@@ -87,7 +86,7 @@ export const removeMotorData = (id) => {
     try {
       await deleteMotorDoc();
       dispatch(removeMotor(id));
-      console.log("motor data remeved!");
+      // console.log("motor data remeved!");
     } catch (err) {
       console.log("delete error", err);
     }

@@ -1,6 +1,11 @@
 import { NavLink } from "react-router-dom";
 
 const NavItems = ({ classNames, navigation }) => {
+  const activClass = (isActive) => {
+    return isActive
+      ? "bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium"
+      : "px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white";
+  };
   return (
     <div className="hidden md:block">
       <div className="ml-10 flex items-baseline space-x-4">
@@ -8,12 +13,7 @@ const NavItems = ({ classNames, navigation }) => {
           <NavLink
             key={item.name}
             to={item.href}
-            className={classNames(
-              item.current
-                ? "bg-gray-900 text-white"
-                : "text-gray-300 hover:bg-gray-700 hover:text-white",
-              "px-3 py-2 rounded-md text-sm font-medium"
-            )}
+            className={({ isActive }) => activClass(isActive)}
             aria-current={item.current ? "page" : undefined}
           >
             {item.name}

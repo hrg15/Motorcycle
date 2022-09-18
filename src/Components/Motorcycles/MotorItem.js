@@ -1,5 +1,4 @@
 import { useDispatch } from "react-redux";
-import { removeMotor } from "../../Store/MotorReducer";
 import { removeMotorData } from "../../Store/MotorAction";
 
 const MotorItem = ({ motor }) => {
